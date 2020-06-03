@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import SavedList from './Movies/SavedList';
+import MovieList from './Movies/MovieList';
+import Movies from "./Movies/Movie";
+import { Route } from "react-router-dom";
 
 const App = () => {
-  {/*first commit*/}
   const [savedList, setSavedList] = useState([]);
   const [movieList, setMovieList] = useState([]);
 
@@ -29,7 +31,12 @@ const App = () => {
   return (
     <div>
       <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
+      <Route exact path="/">
+        <MovieList movies={movieList} />
+      </Route>
+      <Route path="/movies/:id">
+        <Movies />
+      </Route>
     </div>
   );
 };
